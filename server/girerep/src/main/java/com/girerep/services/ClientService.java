@@ -1,7 +1,8 @@
 package com.girerep.services;
 
 import com.girerep.domain.Client;
-import com.girerep.domain.ClientRequestDTO;
+import com.girerep.domain.ClientCreateDTO;
+import com.girerep.domain.ClientUpdateDTO;
 import com.girerep.exceptions.NotFoundException;
 import com.girerep.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class ClientService {
         );
     }
 
-    public Client createClient(ClientRequestDTO client) {
+    public Client createClient(ClientCreateDTO client) {
         Client newClient = new Client();
         newClient.setName(client.name());
         newClient.setBuyer_name(client.buyer_name());
@@ -39,16 +40,18 @@ public class ClientService {
         return clientRepository.save(newClient);
     }
 
-    public Client updateClient(UUID id, ClientRequestDTO client) {
+    public Client updateClient(UUID id, ClientUpdateDTO client) {
         Client oldClient = findClientById(id);
-        oldClient.setName(client.name());
-        oldClient.setBuyer_name(client.buyer_name());
-        oldClient.setFantasy_name(client.fantasy_name());
-        oldClient.setCorporate_reason(client.corporate_reason());
-        oldClient.setEmail(client.email());
-        oldClient.setPhone(client.phone());
-        oldClient.setAddress(client.address());
-        oldClient.setPostal_code(client.postal_code());
+
+        client.name().ifPresent(oldClient::setName);
+        client.buyer_name().ifPresent(oldClient::setBuyer_name);
+        client.fantasy_name().ifPresent(oldClient::setFantasy_name);
+        client.corporate_reason().ifPresent(oldClient::setCorporate_reason);
+        client.email().ifPresent(oldClient::setEmail);
+        client.phone().ifPresent(oldClient::setPhone);
+        client.address().ifPresent(oldClient::setAddress);
+        client.postal_code().ifPresent(oldClient::setPostal_code);
+
         return clientRepository.save(oldClient);
     }
 

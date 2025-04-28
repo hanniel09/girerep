@@ -1,24 +1,24 @@
 package com.girerep.controllers;
 
 import com.girerep.domain.Client;
+import com.girerep.domain.ClientCreateDTO;
+import com.girerep.domain.ClientUpdateDTO;
 import com.girerep.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
-@RestController("/clients")
+@RestController()
+@RequestMapping("/clients")
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
 
-    @GetMapping
+    @GetMapping()
     public ResponseEntity<List<Client>> getAllClients() {
         List<Client> clients = clientService.findAllClients();
         return  ResponseEntity.ok(clients);
@@ -30,5 +30,21 @@ public class ClientController {
         return  ResponseEntity.ok(client);
     }
 
+    @PostMapping
+    public ResponseEntity<Client> createClient(@RequestBody ClientCreateDTO clientCreateDTO) {
+        Client client = clientService.createClient(clientCreateDTO);
+        return  ResponseEntity.ok(client);
+    }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Client> updateClient(@PathVariable UUID id, @RequestBody ClientUpdateDTO clientUpdateDTO) {
+        Client client = clientService.updateClient(id, clientUpdateDTO);
+        return  ResponseEntity.ok(client);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Client> deleteClient(@PathVariable UUID id) {
+        clientService.deleteClient(id);
+        return  ResponseEntity.noContent().build();
+    }
 }
