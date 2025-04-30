@@ -2,6 +2,7 @@ package com.girerep.controllers;
 
 import com.girerep.domain.Client;
 import com.girerep.domain.ClientCreateDTO;
+import com.girerep.domain.ClientResponseDTO;
 import com.girerep.domain.ClientUpdateDTO;
 import com.girerep.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,11 @@ public class ClientController {
     public ResponseEntity<Client> getClientById(@PathVariable UUID id) {
         Client client = clientService.findClientById(id);
         return  ResponseEntity.ok(client);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ClientResponseDTO>> searchClients(@RequestParam String query) {
+        return ResponseEntity.ok(clientService.searchClients(query));
     }
 
     @PostMapping

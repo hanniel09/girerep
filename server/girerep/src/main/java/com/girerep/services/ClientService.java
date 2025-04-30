@@ -2,6 +2,7 @@ package com.girerep.services;
 
 import com.girerep.domain.Client;
 import com.girerep.domain.ClientCreateDTO;
+import com.girerep.domain.ClientResponseDTO;
 import com.girerep.domain.ClientUpdateDTO;
 import com.girerep.exceptions.NotFoundException;
 import com.girerep.repositories.ClientRepository;
@@ -25,6 +26,23 @@ public class ClientService {
         return clientRepository.findById(id).orElseThrow(
                 () -> new NotFoundException("Client com id: " + id + " não foi encontrado ou não existe")
         );
+    }
+
+    public List<ClientResponseDTO> searchClients(String query) {
+        return clientRepository.findByQuery(query)
+                .stream()
+                .map(client -> new ClientResponseDTO(
+                        client.getId(),
+                        client.getName(),
+                        client.getBuyer_name(),
+                        client.getFantasy_name(),
+                        client.getCorporate_reason(),
+                        client.getEmail(),
+                        client.getPhone(),
+                        client.getAddress(),
+                        client.getPostal_code()
+                ))
+                .toList();
     }
 
     public Client createClient(ClientCreateDTO client) {
