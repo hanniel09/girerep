@@ -1,10 +1,10 @@
-package com.girerep.controllers;
+package com.girerep.controllers.client;
 
-import com.girerep.domain.Client;
-import com.girerep.domain.ClientCreateDTO;
-import com.girerep.domain.ClientResponseDTO;
-import com.girerep.domain.ClientUpdateDTO;
-import com.girerep.services.ClientService;
+import com.girerep.domain.client.Client;
+import com.girerep.domain.client.ClientCreateDTO;
+import com.girerep.domain.client.ClientResponseDTO;
+import com.girerep.domain.client.ClientUpdateDTO;
+import com.girerep.services.client.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

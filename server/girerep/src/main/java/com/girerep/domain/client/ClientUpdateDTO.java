@@ -1,4 +1,4 @@
-package com.girerep.domain;
+package com.girerep.domain.client;
 
 import java.util.Optional;
 

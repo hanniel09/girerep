@@ -1,4 +1,4 @@
-package com.girerep.domain;
+package com.girerep.domain.client;
 
 public record ClientCreateDTO(
         String name,

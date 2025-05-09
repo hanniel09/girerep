@@ -1,6 +1,6 @@
-package com.girerep.repositories;
+package com.girerep.repositories.client;
 
-import com.girerep.domain.Client;
+import com.girerep.domain.client.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

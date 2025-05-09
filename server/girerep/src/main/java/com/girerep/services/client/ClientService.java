@@ -1,11 +1,11 @@
-package com.girerep.services;
+package com.girerep.services.client;
 
-import com.girerep.domain.Client;
-import com.girerep.domain.ClientCreateDTO;
-import com.girerep.domain.ClientResponseDTO;
-import com.girerep.domain.ClientUpdateDTO;
+import com.girerep.domain.client.Client;
+import com.girerep.domain.client.ClientCreateDTO;
+import com.girerep.domain.client.ClientResponseDTO;
+import com.girerep.domain.client.ClientUpdateDTO;
 import com.girerep.exceptions.NotFoundException;
-import com.girerep.repositories.ClientRepository;
+import com.girerep.repositories.client.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
