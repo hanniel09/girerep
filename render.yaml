@@ -6,13 +6,13 @@ services:
     rootDir: server/girerep # Onde está seu pom.xml
     buildCommand: ./mvnw clean install -DskipTests
     startCommand: java -jar target/girerep-0.0.1-SNAPSHOT.jar # Confirme o nome exato do JAR
-    env: java # Isso diz ao Render que é um ambiente Java
+    # REMOVIDO: env: java
     autoDeploy: true
     plan: free # Ou starter, etc.
     envVars:
       - key: JAVA_VERSION
         value: 17
-      - key: JAVA_HOME # Não deveria ser estritamente necessário com env: java, mas para garantir
+      - key: JAVA_HOME # Manter por precaução, mesmo que o Render possa inferir
         value: /usr/local/openjdk-17
       - key: MYSQL_HOST
         value: ${mysql.host} # Referência à variável do serviço Railway
@@ -30,3 +30,16 @@ services:
         value: girerep-secret
       - key: JWT_EXPIRATION
         value: 86400000
+
+  # Frontend Service (Next.js) - Certifique-se de que este também está no render.yaml
+  - type: web
+    name: girerep-frontend # Nome do seu serviço frontend
+    rootDir: web # Onde está seu package.json
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    env: node # Este sim é um runtime válido para 'env'
+    autoDeploy: true
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        value: https://girerep-backend.onrender.com # Substitua pela URL final do seu backend
