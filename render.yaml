@@ -1,0 +1,32 @@
+# render.yaml
+services:
+  # Backend Service (Spring Boot)
+  - type: web
+    name: girerep-backend # Nome do seu serviço backend
+    rootDir: server/girerep # Onde está seu pom.xml
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: java -jar target/girerep-0.0.1-SNAPSHOT.jar # Confirme o nome exato do JAR
+    env: java # Isso diz ao Render que é um ambiente Java
+    autoDeploy: true
+    plan: free # Ou starter, etc.
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: JAVA_HOME # Não deveria ser estritamente necessário com env: java, mas para garantir
+        value: /usr/local/openjdk-17
+      - key: MYSQL_HOST
+        value: ${mysql.host} # Referência à variável do serviço Railway
+      - key: MYSQL_PORT
+        value: ${mysql.port}
+      - key: MYSQL_USER
+        value: ${mysql.user}
+      - key: MYSQL_PASSWORD
+        value: ${mysql.password}
+      - key: MYSQL_DATABASE
+        value: ${mysql.database}
+      - key: HIBERNATE_DDL_AUTO
+        value: update
+      - key: JWT_SECRET
+        value: girerep-secret
+      - key: JWT_EXPIRATION
+        value: 86400000
