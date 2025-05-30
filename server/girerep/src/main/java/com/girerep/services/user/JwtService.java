@@ -21,9 +21,12 @@ public class JwtService {
 
     public String generateToken(UserDetails user) {
 
+        String authority = user.getAuthorities().iterator().next().getAuthority();
+        String role = authority.replace("ROLE_", "");
+
         return JWT.create()
                 .withSubject(user.getUsername())
-                .withClaim("role", user.getAuthorities().iterator().next().getAuthority())
+                .withClaim("role", role)
                 .withIssuedAt(new Date())
                 .withExpiresAt(new Date(System.currentTimeMillis() + expirationTime))
                 .sign(Algorithm.HMAC256(secretKey));

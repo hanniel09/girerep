@@ -6,6 +6,7 @@ import com.girerep.domain.client.ClientResponseDTO;
 import com.girerep.domain.client.ClientUpdateDTO;
 import com.girerep.services.client.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,11 +21,25 @@ public class ClientController {
     private ClientService clientService;
 
     @GetMapping()
-    public ResponseEntity<List<Client>> getAllClients() {
-        List<Client> clients = clientService.findAllClients();
-        return  ResponseEntity.ok(clients);
+    public ResponseEntity<Page<ClientResponseDTO>> getClients(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "20") int size) {
+        Page<Client> clients = clientService.getAllClientsPaged(page, size);
+        Page<ClientResponseDTO> dtoPage = clients.map(client ->
+                new ClientResponseDTO(
+                        client.getId(),
+                        client.getName(),
+                        client.getBuyer_name(),
+                        client.getFantasy_name(),
+                        client.getCorporate_reason(),
+                        client.getEmail(),
+                        client.getPhone(),
+                        client.getAddress(),
+                        client.getPostal_code()
+                )
+        );
+        return ResponseEntity.ok(dtoPage);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable UUID id) {
         Client client = clientService.findClientById(id);

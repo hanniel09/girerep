@@ -7,6 +7,9 @@ import com.girerep.domain.client.ClientUpdateDTO;
 import com.girerep.exceptions.NotFoundException;
 import com.girerep.repositories.client.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,8 +21,9 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public List<Client> findAllClients() {
-        return clientRepository.findAll();
+    public Page<Client> getAllClientsPaged(int page, int size) {
+        var pageable = PageRequest.of(page, size, Sort.by("createdAt").descending());
+        return clientRepository.findAll(pageable);
     }
 
     public Client findClientById(UUID id) {
