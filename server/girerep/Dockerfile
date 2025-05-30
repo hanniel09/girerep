@@ -1,4 +1,5 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim AS builder
+
 
 WORKDIR /app
 
@@ -7,9 +8,15 @@ COPY mvnw* pom.xml ./
 
 RUN chmod +x ./mvnw
 
+
 RUN ./mvnw clean install -DskipTests
 
-COPY target/girerep-0.0.1-SNAPSHOT.jar app.jar
+
+FROM openjdk:17-jre-slim
+
+WORKDIR /app
+
+COPY --from=builder /app/target/girerep-0.0.1-SNAPSHOT.jar app.jar
 
 EXPOSE 8080
 
