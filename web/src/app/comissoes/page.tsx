@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { CommissionForm, CommissionFormDialog } from "./CommissionFormDialog";
-import { Button } from "@/components/ui/button";
-import Header from "@/components/header";
+import { Button } from "../../components/ui/button";
+import Header from "../../components/header";
 import { useAuth } from "../../hooks/useAuth";
 import { Pencil, Search, Trash2 } from "lucide-react";
 import ProtectedRoute from "../../components/ProtectedRoute";

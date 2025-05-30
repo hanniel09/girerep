@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, use } from "react";
-import { useAuth } from "@/hooks/useAuth";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { useAuth } from "../../../hooks/useAuth";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle } from "../../../components/ui/dialog";
 import { Trash2 } from "lucide-react";
 import Header from "../../../components/header";
 import ProtectedRoute from "../../../components/ProtectedRoute";

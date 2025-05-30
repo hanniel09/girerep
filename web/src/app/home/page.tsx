@@ -1,16 +1,16 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../components/ui/button";
 import { useRouter } from "next/navigation";
-import ProtectedRoute from "@/components/ProtectedRoute";
-import { useAuth } from "@/hooks/useAuth";
-import Header from "@/components/header";
-import { Client } from "@/types";
+import ProtectedRoute from "../../components/ProtectedRoute";
+import { useAuth } from "../../hooks/useAuth";
+import Header from "../../components/header";
+import { Client } from "../../types";
 import { Pencil, Trash2 } from "lucide-react";
 
-import { ClientFormDialog, ClientForm } from "@/app/clientes/ClientDialog";
-import { CommissionFormDialog, CommissionForm } from "@/app/comissoes/CommissionFormDialog";
+import { ClientFormDialog, ClientForm } from "../../app/clientes/ClientDialog";
+import { CommissionFormDialog, CommissionForm } from "../../app/comissoes/CommissionFormDialog";
 
 type CommissionResponse = CommissionForm & { id: string; monthYear: string };
 

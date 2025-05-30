@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../../components/ui/button";
+import { Input } from "../../../components/ui/input";
 import { KeyRound, User } from "lucide-react";
 import { useState } from "react";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "../../../hooks/useAuth";
 
 
 export default function Home() {

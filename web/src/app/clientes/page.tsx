@@ -2,11 +2,11 @@
 
 import { useEffect, useState } from "react";
 import { Pencil, Search, Trash2 } from "lucide-react";
-import { useAuth } from "@/hooks/useAuth";
-import { Client } from "@/types";
+import { useAuth } from "../../hooks/useAuth";
+import { Client } from "../../types";
 import { ClientFormDialog, ClientForm } from "./ClientDialog";
-import Header from "@/components/header";
-import { Button } from "@/components/ui/button";
+import Header from "../../components/header";
+import { Button } from "../../components/ui/button";
 import ProtectedRoute from "../../components/ProtectedRoute";
 import { Input } from "../../components/ui/input";
 

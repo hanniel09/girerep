@@ -2,7 +2,7 @@
 
 import { Button } from "./ui/button";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 interface HeaderProps {
   title?: string;

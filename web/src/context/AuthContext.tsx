@@ -10,12 +10,14 @@ interface AuthContextType {
   role: string | null;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
+  isAdmin?: boolean;
   isAuthenticated: boolean;
 }
 
 export const AuthContext = createContext<AuthContextType>({
   user: null,
   token: null,
+  role: null,
   login: async () => { },
   logout: () => { },
   isAuthenticated: false,
