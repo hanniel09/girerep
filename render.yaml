@@ -4,12 +4,12 @@ services:
   - type: web
     name: girerep-backend 
     rootDir: server/girerep 
-   
     dockerfilePath: server/girerep/Dockerfile 
+
     autoDeploy: true
     plan: free 
     envVars:
-     
+
       - key: MYSQL_HOST
         value: ${mysql.host} 
       - key: MYSQL_PORT
@@ -27,7 +27,6 @@ services:
       - key: JWT_EXPIRATION
         value: 86400000
 
- 
   - type: web
     name: girerep-frontend 
     rootDir: web 
@@ -38,4 +37,4 @@ services:
     plan: free
     envVars:
       - key: NEXT_PUBLIC_API_URL
-        value: https://girerep-backend.onrender.com
+        value: https://girerep-backend.onrender.com 
