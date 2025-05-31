@@ -116,7 +116,7 @@ export default function Page() {
         </div>
 
         <div className="flex flex-col space-y-4">
-          {clients.map((client) => (
+          {Array.isArray(clients) && clients.map((client) => (
             <div
               key={client.id}
               className="max-w-[1600px] w-full rounded-xl h-[100px] shadow-sm border bg-white hover:shadow-md transition mx-auto"
