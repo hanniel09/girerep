@@ -25,11 +25,22 @@ export default function Page() {
     const res = await fetch(url, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    if (res.ok) {
-      const data = await res.json();
-      setClients(data.content);
+    if (!res.ok) {
+      setClients([]);
+      return;
     }
-    else setClients([]);
+
+    const data = await res.json();
+
+    if (Array.isArray(data)) {
+      setClients(data as Client[]);
+    }
+    else if (data.content && Array.isArray(data.content)) {
+      setClients(data.content as Client[]);
+    }
+    else {
+      setClients([]);
+    }
   }
 
   useEffect(() => {
