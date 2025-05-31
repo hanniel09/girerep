@@ -38,6 +38,7 @@ public class SecurityConfig {
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST,"/auth/register").permitAll()
                         .requestMatchers(HttpMethod.POST,"/auth/login").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(
